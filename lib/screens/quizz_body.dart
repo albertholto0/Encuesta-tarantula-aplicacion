@@ -19,7 +19,7 @@ class _QuizzBodyScreenState extends State<QuizzBodyScreen> {
   final TextEditingController _textInputController = TextEditingController();
 
   void _answerQuestion(String answer) {
-    if (answer == "Si (Especificar)") {
+    if (answer == "Sí (Especificar)") {
       setState(() {
         _showTextInput = true;
       });

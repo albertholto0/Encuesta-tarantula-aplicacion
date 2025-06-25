@@ -166,6 +166,12 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                         labelText: 'Lengua materna',
                         labelStyle: TextStyle(fontSize: 14),
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Por favor ingrese su lengua materna';
+                        }
+                        return null;
+                      },
                     ),
                     TextFormField(
                       controller: _grupoEtnicoController,
@@ -249,7 +255,9 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                             _formulario.edad = int.parse(_edadController.text);
                             _formulario.lenguaMaterna = _lenguaController.text;
                             _formulario.grupoEtnico =
-                                _grupoEtnicoController.text;
+                                _grupoEtnicoController.text.isEmpty
+                                ? 'Ninguno'
+                                : _grupoEtnicoController.text;
                             _formulario.fuenteTrabajo = _trabajoController.text;
                             _formulario.lugarOrigen = _origenController.text;
                             _formulario.numeroHijos =

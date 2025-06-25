@@ -26,6 +26,16 @@ final listQuestions = [
     answers: ["mucho", "poco", "nada"],
   ),
   Question(
+    textQuestion:
+        "¿Qué tanto consideras que se ha removido el bosque para implementar cultivos (maíz, agave), ganadería o construción de casas en los ultimos 5 años?",
+    answers: ["mucho", "poco", "nada"],
+  ),
+  Question(
+    textQuestion:
+        "¿Qué tanto consideras que se ha removido el bosque para implementar cultivos (maíz, agave), ganadería o construción de casas en los ultimos 10 años?",
+    answers: ["mucho", "poco", "nada"],
+  ),
+  Question(
     textQuestion: "¿Has visto a la tarántula de terciopelo negro?",
     answers: ["No", "No estoy seguro", "Si"],
   ),
@@ -37,5 +47,4 @@ final listQuestions = [
       "en el bosque (monte, cerro)",
     ],
   ),
-  // Agrega aquí el resto de las 34 preguntas
 ];

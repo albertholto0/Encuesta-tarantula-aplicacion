@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService {
+  // Esta URL debe ser la dirección del servidor donde está alojada la API.
+  // Como estamos usando un emulador de Android, usamos 10.0.2.2 que es un alias para localhost en el emulador.
   static const String _baseUrl = 'http://10.0.2.2/api';
 
   static Future<bool> guardarEncuesta(Map<String, dynamic> datos) async {

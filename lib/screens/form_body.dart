@@ -29,8 +29,17 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
   final _lenguaController = TextEditingController();
   final _grupoEtnicoController = TextEditingController();
   final _trabajoController = TextEditingController();
-  final _escolaridadController = TextEditingController();
-  final _estadoCivilController = TextEditingController();
+  final List<String> _escolaridades = [
+    'Sin escolaridades',
+    'Primaria',
+    'Secundaria',
+    'Preparatoria/Bachillerato',
+    'Universidad',
+    'Posgrado',
+    'Doctorado',
+    'Postdoctorado',
+  ];
+  final List<String> _estadosCiviles = ['Soltero(a)', 'Casado(a)', 'Viudo(a)'];
   final _origenController = TextEditingController();
   final _hijosController = TextEditingController();
 
@@ -41,8 +50,6 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
     _lenguaController.dispose();
     _grupoEtnicoController.dispose();
     _trabajoController.dispose();
-    _escolaridadController.dispose();
-    _estadoCivilController.dispose();
     _origenController.dispose();
     _hijosController.dispose();
     super.dispose();
@@ -174,19 +181,49 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                         labelStyle: TextStyle(fontSize: 14),
                       ),
                     ),
-                    TextFormField(
-                      controller: _escolaridadController,
+                    DropdownButtonFormField<String>(
+                      value: _formulario.escolaridad.isNotEmpty
+                          ? _formulario.escolaridad
+                          : null,
                       decoration: InputDecoration(
                         labelText: 'Escolaridad',
-                        labelStyle: TextStyle(fontSize: 14),
+                        labelStyle: TextStyle(fontSize: 11),
                       ),
+                      items: _escolaridades
+                          .map(
+                            (e) => DropdownMenuItem(value: e, child: Text(e)),
+                          )
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _formulario.escolaridad = value ?? '';
+                        });
+                      },
+                      validator: (value) => value == null || value.isEmpty
+                          ? 'Seleccione una escolaridad'
+                          : null,
                     ),
-                    TextFormField(
-                      controller: _estadoCivilController,
+                    DropdownButtonFormField<String>(
+                      value: _formulario.estadoCivil.isNotEmpty
+                          ? _formulario.estadoCivil
+                          : null,
                       decoration: InputDecoration(
                         labelText: 'Estado civil',
-                        labelStyle: TextStyle(fontSize: 14),
+                        labelStyle: TextStyle(fontSize: 11),
                       ),
+                      items: _estadosCiviles
+                          .map(
+                            (e) => DropdownMenuItem(value: e, child: Text(e)),
+                          )
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _formulario.estadoCivil = value ?? '';
+                        });
+                      },
+                      validator: (value) => value == null || value.isEmpty
+                          ? 'Seleccione un estado civil'
+                          : null,
                     ),
                     TextFormField(
                       controller: _origenController,
@@ -208,17 +245,12 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            // Actualizar el objeto formulario con los valores
                             _formulario.nombre = _nombreController.text;
                             _formulario.edad = int.parse(_edadController.text);
                             _formulario.lenguaMaterna = _lenguaController.text;
                             _formulario.grupoEtnico =
                                 _grupoEtnicoController.text;
                             _formulario.fuenteTrabajo = _trabajoController.text;
-                            _formulario.escolaridad =
-                                _escolaridadController.text;
-                            _formulario.estadoCivil =
-                                _estadoCivilController.text;
                             _formulario.lugarOrigen = _origenController.text;
                             _formulario.numeroHijos =
                                 _hijosController.text.isEmpty

@@ -47,4 +47,8 @@ final listQuestions = [
       "en el bosque (monte, cerro)",
     ],
   ),
+  Question(
+    textQuestion: "¿Conoces algún nombre en tu lengua materna para esta araña",
+    answers: ["No", "No estoy seguro", "Si (Especificar)"],
+  ),
 ];

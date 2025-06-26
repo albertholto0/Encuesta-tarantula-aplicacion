@@ -104,6 +104,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
+              TextButton(
+                onPressed: () {},
+                child: Text("Ver creditos", style: TextStyle(fontSize: 10)),
+              ),
             ],
           ),
         ),

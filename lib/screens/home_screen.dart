@@ -43,26 +43,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         'Cuestionario para la conservación',
-                        style: Theme.of(context).textTheme.headlineSmall
-                            ?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        textAlign: TextAlign.start,
                       ),
+                      SizedBox(height: 10),
                       Text(
-                        'Tarántula mexicana (Tliltocatl schroederi)',
+                        'Tarántula mexicana    (Tliltocatl schroederi)',
                         style: GoogleFonts.ptSerif(
                           textStyle: Theme.of(context).textTheme.titleLarge,
                           fontStyle: FontStyle.italic,
                         ),
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                       ),
                       SizedBox(height: 16),
                       Text(
                         'Ayúdanos a conocer más sobre esta especie y su conservación',
                         style: Theme.of(context).textTheme.bodyMedium,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.justify,
                       ),
                       SizedBox(height: 24),
                       ClipRRect(

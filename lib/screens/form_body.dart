@@ -196,12 +196,16 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                           ),
                         ),
                         DropdownButtonFormField<String>(
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontStyle: FontStyle.normal,
+                          ),
                           value: _formulario.escolaridad.isNotEmpty
                               ? _formulario.escolaridad
                               : null,
                           decoration: InputDecoration(
                             labelText: 'Escolaridad',
-                            labelStyle: TextStyle(fontSize: 11),
+                            labelStyle: TextStyle(fontSize: 14),
                           ),
                           items: _escolaridades
                               .map(
@@ -219,6 +223,10 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                               : null,
                         ),
                         DropdownButtonFormField<String>(
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontStyle: FontStyle.normal,
+                          ),
                           value: _formulario.estadoCivil.isNotEmpty
                               ? _formulario.estadoCivil
                               : null,

@@ -103,7 +103,6 @@ class _QuizzBodyScreenState extends State<QuizzBodyScreen> {
             ),
             height: 10,
             decoration: BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
@@ -170,9 +169,10 @@ class _QuizzBodyScreenState extends State<QuizzBodyScreen> {
                             padding: EdgeInsets.symmetric(horizontal: 16),
                             child: TextField(
                               controller: _textInputController,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 border: InputBorder.none,
                                 labelText: 'Por favor especifique',
+                                labelStyle: TextStyle(color: Colors.black),
                               ),
                             ),
                           ),
@@ -206,7 +206,9 @@ class _QuizzBodyScreenState extends State<QuizzBodyScreen> {
                             width: double.infinity,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blueGrey,
+                                backgroundColor: Theme.of(
+                                  context,
+                                ).colorScheme.primary,
                                 padding: EdgeInsets.symmetric(vertical: 16),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -217,7 +219,7 @@ class _QuizzBodyScreenState extends State<QuizzBodyScreen> {
                                 answer,
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: Colors.white,
+                                  color: Theme.of(context).canvasColor,
                                 ),
                               ),
                             ),

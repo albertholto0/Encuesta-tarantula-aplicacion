@@ -71,7 +71,7 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
             SizedBox(height: 20),
             Center(
               child: Card(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.secondaryContainer,
                 elevation: 4,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),

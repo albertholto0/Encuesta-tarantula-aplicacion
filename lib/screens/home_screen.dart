@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cuestionario_tarantula/screens/form_body.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 16),
               Card(
+                color: Theme.of(context).colorScheme.secondaryContainer,
                 elevation: 4,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
@@ -50,7 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Text(
                         'Tarántula mexicana (Tliltocatl schroederi)',
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: GoogleFonts.ptSerif(
+                          textStyle: Theme.of(context).textTheme.titleLarge,
+                          fontStyle: FontStyle.italic,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: 16),

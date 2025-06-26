@@ -53,8 +53,11 @@ class _FinalScreenState extends State<FinalScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-          title: const Text('¡Gracias por participar!'),
-          content: const Text('Sus respuestas han sido enviadas'),
+          title: Text(
+            '¡Gracias por participar!',
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+          content: Text('Sus respuestas han sido enviadas'),
           actions: [
             TextButton(
               onPressed: () {
@@ -64,7 +67,7 @@ class _FinalScreenState extends State<FinalScreen> {
                   (route) => false,
                 );
               },
-              child: const Text('OK'),
+              child: Text('OK'),
             ),
           ],
         ),
@@ -84,7 +87,8 @@ class _FinalScreenState extends State<FinalScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Escribe tu opinión'),
+        title: const Text('Escribe tu opinión', textAlign: TextAlign.center),
+        centerTitle: true,
         automaticallyImplyLeading: false,
       ),
       body: Padding(
@@ -94,20 +98,26 @@ class _FinalScreenState extends State<FinalScreen> {
             TextField(
               controller: _controller,
               maxLines: 5,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Tu opinión',
                 hintText: 'Escribe aquí tu opinión personal...',
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             ElevatedButton(
               onPressed: _isLoading ? null : _enviarDatos,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+              ),
               child: _isLoading
                   ? const CircularProgressIndicator()
-                  : const Text('Enviar'),
+                  : Text(
+                      'Enviar',
+                      style: TextStyle(color: Theme.of(context).canvasColor),
+                    ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
           ],
         ),
       ),

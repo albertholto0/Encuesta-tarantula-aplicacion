@@ -56,12 +56,14 @@ final lightTheme = ThemeData(
       color: lightColorScheme.onSurface,
     ),
     titleLarge: GoogleFonts.inter(
-      fontSize: 18,
+      fontSize: 20,
       color: lightColorScheme.onSurface,
+      fontWeight: FontWeight.bold,
     ),
     titleMedium: GoogleFonts.inter(
-      fontSize: 16,
+      fontSize: 18,
       color: lightColorScheme.onSurface,
+      fontWeight: FontWeight.bold,
     ),
   ),
   scaffoldBackgroundColor: lightColorScheme.surface,

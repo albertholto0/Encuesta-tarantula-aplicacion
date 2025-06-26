@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }

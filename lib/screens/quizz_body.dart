@@ -168,6 +168,7 @@ class _QuizzBodyScreenState extends State<QuizzBodyScreen> {
                             ),
                             padding: EdgeInsets.symmetric(horizontal: 16),
                             child: TextField(
+                              style: TextStyle(color: Colors.black),
                               controller: _textInputController,
                               decoration: InputDecoration(
                                 border: InputBorder.none,

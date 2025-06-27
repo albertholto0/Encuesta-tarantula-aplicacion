@@ -1,14 +1,19 @@
+// api_service.dart
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  // Esta URL debe ser la dirección del servidor donde está alojada la API.
-  // Como estamos usando un emulador de Android, usamos 10.0.2.2 que es un alias para localhost en el emulador.
-  static const String _baseUrl = 'http://10.0.2.2/api';
-  //static const String _baseUrl = 'http://192.168.137.108/api';
+  // Ahora es pública (sin guion bajo)
+  //static const String baseUrl = 'http://10.0.2.2/api';
+  static const String baseUrl = 'http://192.168.137.215/api';
+
+  // Método para obtener la URL de visualización
+  static String getVisualizationUrl() {
+    return '$baseUrl/visualizar_encuestas.php';
+  }
 
   static Future<bool> guardarEncuesta(Map<String, dynamic> datos) async {
-    final url = Uri.parse('$_baseUrl/guardar_encuesta.php');
+    final url = Uri.parse('$baseUrl/guardar_encuesta.php'); // Usa baseUrl
     print('Enviando a: $url'); // Debug
 
     try {

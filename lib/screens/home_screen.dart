@@ -1,6 +1,9 @@
+// home_screen.dart
 import 'package:flutter/material.dart';
 import 'package:cuestionario_tarantula/screens/form_body.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:cuestionario_tarantula/services/api_service.dart'; // Importa ApiService
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,6 +13,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // Obtén la URL de visualización desde ApiService
+  final String _visualizationUrl = ApiService.getVisualizationUrl();
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(Uri.parse(_visualizationUrl))) {
+      throw Exception('No se pudo lanzar $_visualizationUrl');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final brightness = Theme.of(context).brightness;
@@ -107,6 +119,11 @@ class _HomeScreenState extends State<HomeScreen> {
               TextButton(
                 onPressed: () {},
                 child: Text("Ver creditos", style: TextStyle(fontSize: 10)),
+              ),
+              TextButton.icon(
+                onPressed: _launchUrl,
+                icon: Icon(Icons.admin_panel_settings),
+                label: Text('Administrador', style: TextStyle(fontSize: 10)),
               ),
             ],
           ),

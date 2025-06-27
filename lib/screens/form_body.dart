@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cuestionario_tarantula/domain/form.dart';
 import 'package:cuestionario_tarantula/screens/quizz_body.dart';
+import 'package:cuestionario_tarantula/domain/municipios.dart';
 
 class FormBodyScreen extends StatefulWidget {
   const FormBodyScreen({super.key});
@@ -40,7 +41,7 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
     'Postdoctorado',
   ];
   final List<String> _estadosCiviles = ['Soltero(a)', 'Casado(a)', 'Viudo(a)'];
-  final _origenController = TextEditingController();
+  late TextEditingController _origenController;
   final _hijosController = TextEditingController();
 
   @override
@@ -53,6 +54,12 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
     _origenController.dispose();
     _hijosController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _origenController = TextEditingController();
   }
 
   @override
@@ -249,12 +256,94 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                               ? 'Seleccione un estado civil'
                               : null,
                         ),
-                        TextFormField(
-                          controller: _origenController,
-                          decoration: InputDecoration(
-                            labelText: 'Lugar de origen',
-                            labelStyle: TextStyle(fontSize: 14),
-                          ),
+                        Autocomplete<String>(
+                          optionsBuilder: (TextEditingValue textEditingValue) {
+                            if (textEditingValue.text.isEmpty) {
+                              return const Iterable<String>.empty();
+                            }
+                            return municipiosOaxaca
+                                .where((String option) {
+                                  return option.toLowerCase().contains(
+                                    textEditingValue.text.toLowerCase(),
+                                  );
+                                })
+                                .take(5);
+                          },
+                          onSelected: (String selection) {
+                            _origenController.text = selection;
+                            _formulario.lugarOrigen = selection;
+                          },
+                          fieldViewBuilder:
+                              (
+                                BuildContext context,
+                                TextEditingController
+                                fieldTextEditingController,
+                                FocusNode fieldFocusNode,
+                                VoidCallback onFieldSubmitted,
+                              ) {
+                                _origenController = fieldTextEditingController;
+                                return TextFormField(
+                                  controller: fieldTextEditingController,
+                                  focusNode: fieldFocusNode,
+                                  decoration: InputDecoration(
+                                    labelText:
+                                        'Lugar de origen (Municipio de Oaxaca)',
+                                    labelStyle: TextStyle(fontSize: 14),
+                                    hintText: 'Escribe tu municipio...',
+                                    suffixIcon:
+                                        _origenController.text.isNotEmpty
+                                        ? IconButton(
+                                            icon: Icon(Icons.clear),
+                                            onPressed: () {
+                                              _origenController.clear();
+                                              _formulario.lugarOrigen = '';
+                                              setState(() {});
+                                            },
+                                          )
+                                        : null,
+                                  ),
+                                  onChanged: (value) {
+                                    _formulario.lugarOrigen = value;
+                                    setState(() {});
+                                  },
+                                );
+                              },
+                          optionsViewBuilder:
+                              (
+                                BuildContext context,
+                                AutocompleteOnSelected<String> onSelected,
+                                Iterable<String> options,
+                              ) {
+                                return Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Material(
+                                    elevation: 4.0,
+                                    child: ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                        maxHeight: 200,
+                                      ),
+                                      child: ListView.builder(
+                                        padding: EdgeInsets.zero,
+                                        itemCount: options.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                              final String option = options
+                                                  .elementAt(index);
+                                              return InkWell(
+                                                onTap: () {
+                                                  onSelected(option);
+                                                },
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(12.0),
+                                                  child: Text(option),
+                                                ),
+                                              );
+                                            },
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
                         ),
                         TextFormField(
                           controller: _hijosController,

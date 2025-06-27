@@ -72,6 +72,7 @@ flutter:
     - assets/images/logo_tarantula_light.png
     - assets/images/logo_tarantula_dark.png
     - assets/images/logo_tarantula_app.png
+    - assets/images/logo_unsij_verde.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:cuestionario_tarantula/screens/form_body.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:cuestionario_tarantula/services/api_service.dart'; // Importa ApiService
+import 'package:cuestionario_tarantula/services/api_service.dart';
+import 'package:cuestionario_tarantula/widgets/buildCredit.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Cuestionario para la conservación',
+                        'Encuesta para la conservación',
                         style: GoogleFonts.poppins(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -117,8 +118,104 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               TextButton(
-                onPressed: () {},
-                child: Text("Ver creditos", style: TextStyle(fontSize: 10)),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        title: Container(
+                          child: Text(
+                            "CRÉDITOS",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                        ),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.asset(
+                                'assets/images/logo_unsij_verde.png',
+                                width: 120,
+                                height: 80,
+                                fit: BoxFit.contain,
+                              ),
+                              SizedBox(height: 20),
+                              buildCreditItem(
+                                context,
+                                "Diseño Visual, Interfaz de Usuario",
+                                "Diana Belen Luna Hernandez",
+                                Icons.design_services,
+                              ),
+                              SizedBox(height: 15),
+                              buildCreditItem(
+                                context,
+                                "Diseño, Lógica, Base de datos y Servidor web",
+                                "Albert Alexis Contreras Mendoza",
+                                Icons.developer_mode,
+                              ),
+                              SizedBox(height: 20),
+                              Container(
+                                padding: EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.secondaryContainer,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Text(
+                                  '¡Gracias por usar nuestra aplicación!',
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.secondary,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              foregroundColor: Theme.of(
+                                context,
+                              ).colorScheme.primary,
+                            ),
+                            child: Text(
+                              "CERRAR",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  "Ver créditos",
+                  style: TextStyle(
+                    fontSize: 10,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
               ),
               TextButton.icon(
                 onPressed: _launchUrl,

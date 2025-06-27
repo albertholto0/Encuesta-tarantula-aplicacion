@@ -51,7 +51,6 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
     _lenguaController.dispose();
     _grupoEtnicoController.dispose();
     _trabajoController.dispose();
-    _origenController.dispose();
     _hijosController.dispose();
     super.dispose();
   }
@@ -191,7 +190,7 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                         TextFormField(
                           controller: _grupoEtnicoController,
                           decoration: InputDecoration(
-                            labelText: 'Grupo étnico',
+                            labelText: 'Grupo étnico (opcional)',
                             labelStyle: TextStyle(fontSize: 14),
                           ),
                         ),
@@ -216,8 +215,17 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                           ),
                           items: _escolaridades
                               .map(
-                                (e) =>
-                                    DropdownMenuItem(value: e, child: Text(e)),
+                                (e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(
+                                    e,
+                                    style: TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onSurface,
+                                    ),
+                                  ),
+                                ),
                               )
                               .toList(),
                           onChanged: (value) {
@@ -243,8 +251,17 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                           ),
                           items: _estadosCiviles
                               .map(
-                                (e) =>
-                                    DropdownMenuItem(value: e, child: Text(e)),
+                                (e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(
+                                    e,
+                                    style: TextStyle(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onSurface,
+                                    ),
+                                  ),
+                                ),
                               )
                               .toList(),
                           onChanged: (value) {
@@ -320,10 +337,14 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                                     elevation: 4.0,
                                     child: ConstrainedBox(
                                       constraints: BoxConstraints(
-                                        maxHeight: 200,
+                                        maxHeight: options.length * 48.0,
+                                        maxWidth:
+                                            MediaQuery.of(context).size.width *
+                                            0.9,
                                       ),
                                       child: ListView.builder(
                                         padding: EdgeInsets.zero,
+                                        shrinkWrap: true,
                                         itemCount: options.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
@@ -333,9 +354,21 @@ class _FormBodyScreenState extends State<FormBodyScreen> {
                                                 onTap: () {
                                                   onSelected(option);
                                                 },
-                                                child: Padding(
+                                                child: Container(
+                                                  constraints: BoxConstraints(
+                                                    minHeight: 48.0,
+                                                  ),
+                                                  alignment:
+                                                      Alignment.centerLeft,
                                                   padding: EdgeInsets.all(12.0),
-                                                  child: Text(option),
+                                                  child: Text(
+                                                    option,
+                                                    style: TextStyle(
+                                                      color: Theme.of(
+                                                        context,
+                                                      ).colorScheme.onSurface,
+                                                    ),
+                                                  ),
                                                 ),
                                               );
                                             },

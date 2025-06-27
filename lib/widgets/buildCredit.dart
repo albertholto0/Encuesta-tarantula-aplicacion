@@ -5,6 +5,7 @@ Widget buildCreditItem(
   BuildContext context,
   String role,
   String name,
+  String contacto,
   IconData icon,
 ) {
   return Column(
@@ -24,6 +25,11 @@ Widget buildCreditItem(
         name,
         textAlign: TextAlign.center,
         style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.bold),
+      ),
+      Text(
+        contacto,
+        textAlign: TextAlign.center,
+        style: GoogleFonts.ptSerif(fontSize: 12, fontStyle: FontStyle.italic),
       ),
     ],
   );
